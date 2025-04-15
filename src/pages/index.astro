@@ -1,11 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "../styles/global.css";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<div class="p-10" data-theme="light">
+	<div class="flex flex-col gap-4">
+		<div>
+			<input type="text" id="ref-input" class="input input-bordered w-full max-w-xs" />
+			<button class="btn btn-primary">Submit</button>
+		</div>
+
+		<p>
+			Computed border-color of the input:
+			<span id="ref-input-border-color" class="badge badge-primary">loading...</span>
+		</p>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		setTimeout(() => {
+			const inputElement = document.getElementById("ref-input");
+			const spanElement = document.getElementById("ref-input-border-color");
+
+			if (inputElement && spanElement) {
+				const computedStyle = window.getComputedStyle(inputElement);
+				const borderColor = computedStyle.getPropertyValue("--input-color");
+				spanElement.textContent = borderColor.trim() || "N/A";
+			}
+		}, 1000);
+	});
+</script>

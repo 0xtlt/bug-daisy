@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: false;
+  root: ":root";
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(0.98 0.0057 84.57);
+  --color-base-300: oklch(0.95 0 0);
+  --input-color: var(--color-base-300);
+}
